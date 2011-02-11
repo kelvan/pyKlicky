@@ -21,6 +21,7 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.connect(self.btnPrev, QtCore.SIGNAL("clicked()"), self.previous_clicked)
         self.connect(self.btnChoice1, QtCore.SIGNAL("clicked()"), self.choice1_clicked)
         self.connect(self.btnChoice2, QtCore.SIGNAL("clicked()"), self.choice2_clicked)
+        self.connect(self.editAnswer, QtCore.SIGNAL("returnPressed()"), self.answer_typed())
 
         try:
             self.next_clicked()
@@ -76,12 +77,28 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.choice_clicked(self.btnChoice2)
 
     def choice_clicked(self, answer):
-        correct = answer.text() == self.helper.extract_word(self.history.current)
+        correct = self.correct_answer(answer.text())
         answer.setText(str(correct))
         if correct:
-            # TODO add some visual feedback
-            time.sleep(0.5)
-            self.next_clicked()
+            self.correct_next()
+
+    def answer_typed(self):
+        # DEBUG
+        self.progressBar.setValue(self.progressBar.value() + 1)
+
+        correct = self.editAnswer.text() and \
+            self.correct_answer(self.editAnswer.text())
+
+        if correct:
+            self.correct_next()
+
+    def correct_answer(self, answer):
+        return answer == self.helper.extract_word(self.history.current)
+
+    def correct_next(self):
+        # TODO add some visual feedback
+        time.sleep(0.5)
+        self.next_clicked()
 
 
 if __name__ == "__main__":
