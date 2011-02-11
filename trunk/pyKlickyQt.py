@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 import sys
+import time
+from random import randint
 from PySide import QtCore, QtGui
 from PySide.QtGui import QImage, QPixmap, QGraphicsScene, QMainWindow
 from Ui_MainWindow import Ui_MainWindow
 from pyKlicky import Helper, History
+
 
 class pyKlickyQt(QMainWindow, Ui_MainWindow):
     _helper = None
@@ -36,7 +39,6 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         return (200, 200)
 
     def load_img(self, img):
-        print img
         image = QtGui.QImage(img)
         x, y = self.get_optimal_size(image)
 
@@ -48,6 +50,13 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.imgChoose.setScene(scene)
         self.imgWrite.setScene(scene)
 
+        if randint(0, 1):
+            self.btnChoice1.setText(self.helper.get_random_word())
+            self.btnChoice2.setText(self.helper.extract_word(self.history.current))
+        else:
+            self.btnChoice1.setText(self.helper.extract_word(self.history.current))
+            self.btnChoice2.setText(self.helper.get_random_word())
+
     def next_clicked(self):
         if self.history.is_last():
             img = self.helper.get_random_image()
@@ -55,7 +64,6 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
             self.load_img(self.history.current)
         else:
             self.load_img(self.history.next())
-
 
     def previous_clicked(self):
         if not self.history.is_first():
@@ -68,7 +76,12 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.choice_clicked(self.btnChoice2)
 
     def choice_clicked(self, answer):
-        raise NotImplementedError
+        correct = answer.text() == self.helper.extract_word(self.history.current)
+        answer.setText(str(correct))
+        if correct:
+            # TODO add some visual feedback
+            time.sleep(0.5)
+            self.next_clicked()
 
 
 if __name__ == "__main__":

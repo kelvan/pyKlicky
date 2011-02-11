@@ -34,8 +34,11 @@ class Helper:
         img_name = ilist[randint(0, len(ilist) - 1)]
         return path.abspath(path.join(self.img_path, img_name))
 
-    def extract_name(self, f):
-        fn = os.path.basename(f.name)
+    def get_random_word(self):
+        return self.extract_word(self.get_random_image())
+
+    def extract_word(self, fn):
+        fn = path.basename(fn)
         try:
             return fn[:fn.rindex('.')]
         except ValueError:
