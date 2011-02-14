@@ -1,0 +1,5 @@
+Place your image files in the img folder.
+pyKlicky uses the filename (without postfix) as name.
+
+If you have soundfiles for this words, put it in the snd folder.
+You can use wav files for each letter for spelling.
