@@ -21,7 +21,11 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.connect(self.btnPrev, QtCore.SIGNAL("clicked()"), self.previous_clicked)
         self.connect(self.btnChoice1, QtCore.SIGNAL("clicked()"), self.choice1_clicked)
         self.connect(self.btnChoice2, QtCore.SIGNAL("clicked()"), self.choice2_clicked)
-        self.connect(self.editAnswer, QtCore.SIGNAL("returnPressed()"), self.answer_typed())
+        self.connect(self.editAnswer, QtCore.SIGNAL("returnPressed()"), self.answer_typed)
+        # TODO: FIX
+        self.connect(self.imgView, QtCore.SIGNAL("clicked()"), self.img_clicked)
+        self.connect(self.imgChoose, QtCore.SIGNAL("clicked()"), self.img_clicked)
+        self.connect(self.imgWrite, QtCore.SIGNAL("clicked()"), self.img_clicked)
 
         try:
             self.next_clicked()
@@ -99,6 +103,10 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         # TODO add some visual feedback
         time.sleep(0.5)
         self.next_clicked()
+
+    def img_clicked(self):
+        # DEBUG
+        self.progressBar.setValue(self.progressBar.value() + 1)
 
 
 if __name__ == "__main__":
