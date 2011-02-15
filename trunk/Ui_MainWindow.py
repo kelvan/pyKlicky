@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Sun Feb 13 20:50:06 2011
+# Created: Mon Feb 14 20:50:54 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,7 +29,13 @@ class Ui_MainWindow(object):
         self.btnPrev.setObjectName("btnPrev")
         self.gridLayout_2.addWidget(self.btnPrev, 2, 3, 1, 1)
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
+        font = QtGui.QFont()
+        font.setFamily("Andale Mono")
+        font.setPointSize(10)
+        self.tabWidget.setFont(font)
+        self.tabWidget.setAutoFillBackground(False)
         self.tabWidget.setTabPosition(QtGui.QTabWidget.East)
+        self.tabWidget.setTabShape(QtGui.QTabWidget.Rounded)
         self.tabWidget.setObjectName("tabWidget")
         self.tab_view = QtGui.QWidget()
         self.tab_view.setObjectName("tab_view")
@@ -38,11 +44,13 @@ class Ui_MainWindow(object):
         self.imgView = QtGui.QGraphicsView(self.tab_view)
         self.imgView.setObjectName("imgView")
         self.verticalLayout.addWidget(self.imgView)
-        self.labelAnswer = QtGui.QLabel(self.tab_view)
+        self.labelAnswer = QtGui.QPushButton(self.tab_view)
         font = QtGui.QFont()
-        font.setPointSize(27)
+        font.setPointSize(20)
         self.labelAnswer.setFont(font)
-        self.labelAnswer.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelAnswer.setAutoDefault(False)
+        self.labelAnswer.setDefault(False)
+        self.labelAnswer.setFlat(True)
         self.labelAnswer.setObjectName("labelAnswer")
         self.verticalLayout.addWidget(self.labelAnswer)
         self.tabWidget.addTab(self.tab_view, "")
@@ -89,7 +97,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.progressBar, 2, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 685, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 685, 27))
         self.menubar.setObjectName("menubar")
         self.menuHighscore = QtGui.QMenu(self.menubar)
         self.menuHighscore.setObjectName("menuHighscore")
@@ -179,7 +187,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
         self.btnNext.setText(QtGui.QApplication.translate("MainWindow", "Next >", None, QtGui.QApplication.UnicodeUTF8))
         self.btnPrev.setText(QtGui.QApplication.translate("MainWindow", "< Previous", None, QtGui.QApplication.UnicodeUTF8))
-        self.labelAnswer.setText(QtGui.QApplication.translate("MainWindow", "Answer", None, QtGui.QApplication.UnicodeUTF8))
+        self.labelAnswer.setText(QtGui.QApplication.translate("MainWindow", "PushButton", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_view), QtGui.QApplication.translate("MainWindow", "View", None, QtGui.QApplication.UnicodeUTF8))
         self.btnChoice2.setText(QtGui.QApplication.translate("MainWindow", "Choice 2", None, QtGui.QApplication.UnicodeUTF8))
         self.btnChoice1.setText(QtGui.QApplication.translate("MainWindow", "Choice 1", None, QtGui.QApplication.UnicodeUTF8))

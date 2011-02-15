@@ -37,8 +37,20 @@
     </item>
     <item row="0" column="1" colspan="5">
      <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <family>Andale Mono</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
       <property name="tabPosition">
        <enum>QTabWidget::East</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Rounded</enum>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -52,17 +64,23 @@
          <widget class="QGraphicsView" name="imgView"/>
         </item>
         <item>
-         <widget class="QLabel" name="labelAnswer">
+         <widget class="QPushButton" name="labelAnswer">
           <property name="font">
            <font>
-            <pointsize>27</pointsize>
+            <pointsize>20</pointsize>
            </font>
           </property>
           <property name="text">
-           <string>Answer</string>
+           <string>PushButton</string>
           </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
+          <property name="autoDefault">
+           <bool>false</bool>
+          </property>
+          <property name="default">
+           <bool>false</bool>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -147,7 +165,7 @@
      <x>0</x>
      <y>0</y>
      <width>685</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuHighscore">
