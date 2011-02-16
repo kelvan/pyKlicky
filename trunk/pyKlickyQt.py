@@ -58,7 +58,8 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         print "resized"
 
     def labelAnswer_clicked(self):
-        self.play(self.answer)
+        self.sound.read_word(self.answer)
+        self.sound.spell(self.answer)
 
     def load_img(self, img):
         image = QtGui.QImage(img)
@@ -81,6 +82,10 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
             self.btnChoice1.setText(cur)
             self.btnChoice2.setText(self.helper.get_random_word())
 
+        if self.tabWidget.currentIndex() == 0:
+            self.sound.read_word(self.answer)
+            self.sound.spell(self.answer)
+
     def next_clicked(self):
         if self.history.is_last():
             img = self.helper.get_random_image()
@@ -89,17 +94,9 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         else:
             self.load_img(self.history.next())
 
-        if self.tabWidget.currentIndex() == 0:
-            self.sound.read_word(self.answer)
-            self.sound.spell(self.answer)
-
     def previous_clicked(self):
         if not self.history.is_first():
             self.load_img(self.history.previous())
-
-            if self.tabWidget.currentIndex() == 0:
-                self.sound.read_word(self.answer)
-                self.sound.spell(self.answer)
 
     def choice1_clicked(self):
         self.choice_clicked(self.btnChoice1)
