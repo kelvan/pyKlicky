@@ -10,6 +10,7 @@ from PySide.QtGui import QImage, QPixmap, QGraphicsScene, QMainWindow, QSound
 from Ui_MainWindow import Ui_MainWindow
 from pyKlicky import Helper, History
 from sound import Sound
+from stats import Stats
 import settings
 
 
@@ -17,6 +18,7 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
     _helper = None
     history = History()
     border = 5
+    stat = Stats()
 
     def __init__(self):
         QtGui.QMainWindow.__init__(self)
@@ -29,10 +31,7 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         self.connect(self.btnChoice2, QtCore.SIGNAL("clicked()"), self.choice2_clicked)
         self.connect(self.editAnswer, QtCore.SIGNAL("returnPressed()"), self.answer_typed)
         # TODO: FIX
-        self.connect(self.imgView, QtCore.SIGNAL("clicked()"), self.img_clicked)
         # self.connect(self.imgView, QtCore.SIGNAL("XXX()"), self.img_resized)
-        self.connect(self.imgChoose, QtCore.SIGNAL("clicked()"), self.img_clicked)
-        self.connect(self.imgWrite, QtCore.SIGNAL("clicked()"), self.img_clicked)
         self.connect(self.labelAnswer, QtCore.SIGNAL("clicked()"), self.labelAnswer_clicked)
 
         self.sound = Sound()
@@ -41,7 +40,7 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
             self.next_clicked()
         except IOError:
             # TODO: Add Popup
-            print "Unable to read data folder"
+            print "Unable to read data folder", settings.Folder.data
 
     @property
     def helper(self):
@@ -74,6 +73,7 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         cur = self.helper.extract_word(self.history.current)
 
         self.labelAnswer.setText(cur)
+        self.progressBar.setValue(self.stat.mean_percent)
 
         if randint(0, 1):
             self.btnChoice1.setText(self.helper.get_random_word())
@@ -132,8 +132,9 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         if self.sound:
             self.sound.play_correct()
 
+        self.stat.correct += 1
+
         # TODO add some visual feedback
-        time.sleep(0.5)
         self.next_clicked()
 
 
@@ -141,11 +142,10 @@ class pyKlickyQt(QMainWindow, Ui_MainWindow):
         if self.sound:
             self.sound.play_incorrect()
 
-        # TODO add some visual feedback
+        self.stat.incorrect += 1
 
-    def img_clicked(self):
-        # DEBUG
-        self.progressBar.setValue(self.progressBar.value() + 1)
+        # TODO add some visual feedback
+        self.next_clicked()
 
 
 if __name__ == "__main__":
