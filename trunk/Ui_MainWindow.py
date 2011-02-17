@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created: Mon Feb 14 20:50:54 2011
+# Created: Thu Feb 17 02:40:52 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -97,7 +97,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2.addWidget(self.progressBar, 2, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 685, 27))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 685, 25))
         self.menubar.setObjectName("menubar")
         self.menuHighscore = QtGui.QMenu(self.menubar)
         self.menuHighscore.setObjectName("menuHighscore")
@@ -184,7 +184,7 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Klicky", None, QtGui.QApplication.UnicodeUTF8))
         self.btnNext.setText(QtGui.QApplication.translate("MainWindow", "Next >", None, QtGui.QApplication.UnicodeUTF8))
         self.btnPrev.setText(QtGui.QApplication.translate("MainWindow", "< Previous", None, QtGui.QApplication.UnicodeUTF8))
         self.labelAnswer.setText(QtGui.QApplication.translate("MainWindow", "PushButton", None, QtGui.QApplication.UnicodeUTF8))
