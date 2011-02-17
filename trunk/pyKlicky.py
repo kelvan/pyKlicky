@@ -1,21 +1,15 @@
 from os import path, listdir
 from random import randint
+from settings import Folder
 
 class Helper:
-    def __init__(self, data='data', img=None, snd=None):
-        if path.isdir(data):
-            self.data_folder = data
-        else:
-            raise IOError
+    def __init__(self):
 
-        self.img_path = self._check_folder(img, path.join(data, 'img'))
-        self.snd_path = self._check_folder(snd, path.join(data, 'snd'))
+        self.img_path = self._check_folder(Folder.images)
+        self.snd_path = self._check_folder(Folder.sound)
 
 
-    def _check_folder(self, p, default):
-        if not p:
-            p = default
-
+    def _check_folder(self, p):
         if path.isdir(p):
             return p
         else:

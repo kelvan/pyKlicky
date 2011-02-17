@@ -1,2 +1,2 @@
 Small python/qt learning program for children and handicapped people.
-data folder have to be in same folder as the program.
+Change settings.py to set your data path, default is ../data/
